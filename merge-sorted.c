@@ -30,7 +30,7 @@ void merge_optimal(int *nums1, int m, int *nums2, int n) {
   int k = m + n - 1;
 
   // Invariants:
-  // k+1 -> length is sorted -> nums[k] < nums[k+1 ... < nums[length-1]
+  // k+1 -> length is sorted -> nums[k] < nums[k+1] ... < nums[length-1]
   // nums1 -> i is sorted -> nums1[0] < ... < nums1[i]
   // nums1[k+1] >= nums1[i]
   // therefore, if k == i the array is sorted
