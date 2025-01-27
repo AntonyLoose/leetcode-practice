@@ -1,5 +1,5 @@
 #include <stdio.h>
-void merge_time_efficient(int *nums1, int m, int *nums2, int n) {
+void merge_first_sol(int *nums1, int m, int *nums2, int n) {
   int nums1_pointer = 0;
   int nums2_pointer = 0;
   int new_arr[m + n];
