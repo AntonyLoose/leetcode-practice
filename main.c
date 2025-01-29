@@ -47,6 +47,17 @@ int removeElement(int *nums, int numsSize, int val) {
   return numsSize - count;
 }
 
+int removeDuplicates(int *nums, int numsSize) {
+  int pointer = 0;
+  for (int i = 0; i < numsSize; i++) {
+    if (i == numsSize - 1 || nums[i] != nums[i + 1]) {
+      nums[pointer] = nums[i];
+      pointer += 1;
+    }
+  }
+  return pointer;
+}
+
 void printArray(int *arr, int size) {
   printf("[");
   for (int i = 0; i < size; i++) {
@@ -57,4 +68,11 @@ void printArray(int *arr, int size) {
   printf("]\n");
 }
 
-int main() { return 1; }
+int main() {
+  int arr[] = {1, 2, 2, 3, 3, 5, 6};
+  int size = 7;
+  int k = removeDuplicates(arr, size);
+  printf("%d\n", k);
+  printArray(arr, size);
+  return 1;
+}
