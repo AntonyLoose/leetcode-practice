@@ -28,7 +28,7 @@ void merge_optimal(int *nums1, int m, int *nums2, int n) {
   }
 }
 
-int removeElement(int *nums, int numsSize, int val) {
+int remove_element(int *nums, int numsSize, int val) {
   int count = 0;
   int i = 0;
 
@@ -47,12 +47,29 @@ int removeElement(int *nums, int numsSize, int val) {
   return numsSize - count;
 }
 
-int removeDuplicates(int *nums, int numsSize) {
+int remove_duplicates(int *nums, int numsSize) {
   int pointer = 0;
   for (int i = 0; i < numsSize; i++) {
     if (i == numsSize - 1 || nums[i] != nums[i + 1]) {
       nums[pointer] = nums[i];
       pointer += 1;
+    }
+  }
+  return pointer;
+}
+
+int remove_duplicates_keep_pairs(int *nums, int numsSize) {
+  int pointer = 0;
+  int count = 0;
+  for (int i = 0; i < numsSize; i++) {
+    if (i == numsSize - 1 || nums[i] != nums[i + 1]) {
+      count = 0;
+    } else {
+      count++;
+    }
+    if (count < 2) {
+      nums[pointer] = nums[i];
+      pointer++;
     }
   }
   return pointer;
@@ -69,9 +86,9 @@ void printArray(int *arr, int size) {
 }
 
 int main() {
-  int arr[] = {1, 2, 2, 3, 3, 5, 6};
-  int size = 7;
-  int k = removeDuplicates(arr, size);
+  int arr[] = {1, 1, 1, 2, 2, 3};
+  int size = 6;
+  int k = remove_duplicates_keep_pairs(arr, size);
   printf("%d\n", k);
   printArray(arr, size);
   return 1;
