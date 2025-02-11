@@ -75,6 +75,36 @@ int remove_duplicates_keep_pairs(int *nums, int numsSize) {
   return pointer;
 }
 
+/**
+ * This implementation assumes that a majority exists. If we cannot make this
+ * assumptions, an additional iteration is required to confirm it is an actual
+ * majority.
+ * Intuition: if it's not the majority in arr[i..j] then we can ignore
+ * arr[i...j] because it would have to be the majority in arr[j...k] to
+ * potentially be the overall majority, and if that's the case then we would
+ * count it as the majority anyway.
+ */
+int boyer_moore_vote(int *nums, int numsSize) {
+  int count = 0;
+  int element;
+
+  for (int i = 0; i < numsSize; i++) {
+    if (i == 0) {
+      element = nums[i];
+      count++;
+      continue;
+    }
+
+    count += nums[i] == element ? 1 : -1;
+    if (count <= 0) {
+      element = nums[i];
+      count = 1;
+    }
+  }
+
+  return element;
+}
+
 void printArray(int *arr, int size) {
   printf("[");
   for (int i = 0; i < size; i++) {
@@ -86,10 +116,9 @@ void printArray(int *arr, int size) {
 }
 
 int main() {
-  int arr[] = {1, 1, 1, 2, 2, 3};
+  int arr[] = {2, 2, 1, 1, 1, 2, 2};
   int size = 6;
-  int k = remove_duplicates_keep_pairs(arr, size);
+  int k = boyer_moore_vote(arr, size);
   printf("%d\n", k);
-  printArray(arr, size);
   return 1;
 }
