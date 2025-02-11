@@ -105,6 +105,28 @@ int boyer_moore_vote(int *nums, int numsSize) {
   return element;
 }
 
+void rotate_arr(int *nums, int numsSize, int k) {
+  int mod_k = k % numsSize;
+  for (int i = 0; i < mod_k; i++) {
+    int prev_el;
+    for (int j = 0; j < numsSize; j++) {
+      if (j == 0) {
+        prev_el = nums[0];
+      }
+      int next_el_index = j == numsSize - 1 ? 0 : j + 1;
+      int tmp = nums[next_el_index];
+      nums[next_el_index] = prev_el;
+      prev_el = tmp;
+    }
+  }
+}
+
+void rotate_arr_eff(int *nums, int numsSize, int k) {
+  // Reverse whole arr
+  // Reverse the last k els
+  // Reverse the first n-k els
+}
+
 void printArray(int *arr, int size) {
   printf("[");
   for (int i = 0; i < size; i++) {
@@ -116,9 +138,9 @@ void printArray(int *arr, int size) {
 }
 
 int main() {
-  int arr[] = {2, 2, 1, 1, 1, 2, 2};
-  int size = 6;
-  int k = boyer_moore_vote(arr, size);
-  printf("%d\n", k);
+  int arr[] = {1, 2, 3, 4, 5, 6, 7};
+  int size = 7;
+  rotate_arr(arr, size, 3);
+  printArray(arr, size);
   return 1;
 }
