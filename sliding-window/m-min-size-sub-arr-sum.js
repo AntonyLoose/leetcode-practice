@@ -1,5 +1,6 @@
 const assert = require('assert');
 
+// This could be made more efficient with a hash map with the positions
 function minSubArrayLength(target, nums) {
     let w1 = 0;
     let w2 = -1;
