@@ -5,7 +5,7 @@ function canConstruct(ransomNote, magazine) {
     const mag = create_map(magazine);
 
     for (const letter of Object.keys(ransom)) {
-        if (mag[letter] == null || ransom[letter] > mag[letter]) return false;
+        if (ransom[letter] > (mag[letter] ?? 0)) return false;
     }
 
     return true;
