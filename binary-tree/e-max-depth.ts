@@ -1,4 +1,4 @@
-import { TreeNode } from "./bin-tree";
+import { TreeNode } from "./bin-tree.ts";
 
 function maxDepth(root: TreeNode | null, depth = 0): number {
     if (!root) {
